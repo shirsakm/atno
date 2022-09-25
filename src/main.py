@@ -3,6 +3,8 @@ import tkinter as tk
 import customtkinter as CTk
 import json
 
+CTk.set_default_color_theme("dark-blue")
+
 class App:
     def __init__(self, root):
         self.root = root
@@ -42,12 +44,40 @@ class App:
         self.element_name = CTk.CTkLabel(self.learn_tab, text="Element Name", text_font=("Arial", 18))
         self.element_name.place(x=150, y=20, width=425, height=60)
 
+        self.data_frame = CTk.CTkFrame(self.learn_tab)
+        self.data_frame.place(x=170, y=90, width=380, height=215)
 
-    def select_element(self, event):
-        index = self.element_list.curselection()[0]
+        CTk.CTkLabel(self.data_frame, text="Symbol", text_font=("Arial", 12)).place(x=20, y=10, width=145, height=25)
+        CTk.CTkLabel(self.data_frame, text="Electronic Config", text_font=("Arial", 12)).place(x=20, y=50, width=145, height=25)
+        CTk.CTkLabel(self.data_frame, text="Atomic Number", text_font=("Arial", 12)).place(x=20, y=90, width=145, height=25)
+        CTk.CTkLabel(self.data_frame, text="Mass Number", text_font=("Arial", 12)).place(x=20, y=130, width=145, height=25)
+        CTk.CTkLabel(self.data_frame, text="Period, Group Number", text_font=("Arial", 12)).place(x=20, y=170, width=145, height=25)
+
+        self.symbol = CTk.CTkLabel(self.data_frame, text="", text_font=("Arial", 12))
+        self.symbol.place(x=175, y=10, width=195, height=25)
+        self.elec_conf = CTk.CTkLabel(self.data_frame, text="", text_font=("Arial", 12))
+        self.elec_conf.place(x=175, y=50, width=195, height=25)
+        self.at_no = CTk.CTkLabel(self.data_frame, text="", text_font=("Arial", 12))
+        self.at_no.place(x=175, y=90, width=195, height=25)
+        self.ma_no = CTk.CTkLabel(self.data_frame, text="", text_font=("Arial", 12))
+        self.ma_no.place(x=175, y=130, width=195, height=25)
+        self.pg_no = CTk.CTkLabel(self.data_frame, text="", text_font=("Arial", 12))
+        self.pg_no.place(x=175, y=170, width=195, height=25)
+
+        self.select_element(None, 0)
+
+
+
+    def select_element(self, event, index=None):
+        index = self.element_list.curselection()[0] if index is None else index
         element = self.elemets[index]
         print(element["name"])
         self.element_name.config(text=element["name"])
+        self.symbol.config(text=element["symbol"])
+        self.elec_conf.config(text=element["electron_configuration_semantic"])
+        self.at_no.config(text=str(element["number"]))
+        self.ma_no.config(text=str(element["atomic_mass"]))
+        self.pg_no.config(text=f"{element['xpos']}, {element['ypos']}")
 
 if __name__ == "__main__":
     root = CTk.CTk()
