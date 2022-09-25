@@ -2,6 +2,8 @@ from mimetypes import common_types
 import tkinter as tk
 import customtkinter as CTk
 import json
+import random
+from tkinter.messagebox import showinfo
 
 CTk.set_default_color_theme("dark-blue")
 
@@ -21,6 +23,7 @@ class App:
 
         self.atom_practice_btn = CTk.CTkButton(self.root, image=self.at_no_icon, command=self.open_atom_practice)
         self.atom_practice_btn.place(x=595, y=140, width=45, height=45)
+        self.current_atom_element = random.randint(0, len(self.elemets) - 1)
 
         CTk.CTkLabel(self.learn_tab, text="Elements", text_font=("Arial", 18)).place(x=10, y=20, width=120, height=25)
 
@@ -61,9 +64,30 @@ class App:
         self.select_element(None, 0)
 
         self.atom_practice_tab = CTk.CTkFrame(self.root)
+        CTk.CTkLabel(self.atom_practice_tab, text="Guess Atomic Number", text_font=("Arial", 28)).place(x=10, y=20, width=560, height=50)
+        self.current_atom_element_label = CTk.CTkLabel(self.atom_practice_tab, text=self.elemets[self.current_atom_element]["name"], text_font=("Arial", 28))
+        self.current_atom_element_label.place(x=150, y=95, width=280, height=50)
+
+        self.current_atom_answer_input = tk.Entry(self.atom_practice_tab, font=("Arial", 22), background="#525252", foreground="#ffffff", borderwidth=0, highlightthickness=0)
+        self.current_atom_answer_input.place(x=150, y=150, width=280, height=50)
+
+        self.current_atom_answer_input.bind("<Return>", self.check_atom_answer)
+
+        self.current_atom_answer_submit_btn = CTk.CTkButton(self.atom_practice_tab, text="Submit", command=self.check_atom_answer)
+        self.current_atom_answer_submit_btn.place(x=150, y=210, width=280, height=50)
 
         self.open_learn()
 
+
+    def check_atom_answer(self, event=None):
+        if self.elemets[self.current_atom_element]["number"] == int(self.current_atom_answer_input.get()):
+            self.current_atom_answer_input.delete(0, tk.END)
+            showinfo("Correct", "Correct!")
+            self.current_atom_element = random.randint(0, len(self.elemets) - 1)
+            self.current_atom_element_label.config(text=self.elemets[self.current_atom_element]["name"])
+        else:
+            self.current_atom_answer_input.delete(0, tk.END)
+            showinfo("Incorrect", f"Incorrect!, Correct answer is {self.elemets[self.current_atom_element]['number']}")
 
     def select_element(self, event, index=None):
         index = self.element_list.curselection()[0] if index is None else index
