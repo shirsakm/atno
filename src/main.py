@@ -16,7 +16,6 @@ class App:
         self.element_list = tk.Listbox(self.learn_tab, background="#525252", borderwidth=0, highlightthickness=0)
         self.element_list.place(x=10, y=50, width=120, height=280)
 
-
 if __name__ == "__main__":
     root = CTk.CTk()
     app = App(root)
