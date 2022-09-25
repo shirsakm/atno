@@ -60,7 +60,7 @@ class App:
         CTk.CTkLabel(self.data_frame, text="Electronic Config", text_font=("Arial", 12)).place(x=20, y=50, width=145, height=25)
         CTk.CTkLabel(self.data_frame, text="Atomic Number", text_font=("Arial", 12)).place(x=20, y=90, width=145, height=25)
         CTk.CTkLabel(self.data_frame, text="Mass Number", text_font=("Arial", 12)).place(x=20, y=130, width=145, height=25)
-        CTk.CTkLabel(self.data_frame, text="Period, Group Number", text_font=("Arial", 12)).place(x=20, y=170, width=145, height=25)
+        CTk.CTkLabel(self.data_frame, text="Period, Group Number", text_font=("Arial", 12)).place(x=0, y=170, width=185, height=25)
 
         self.symbol = CTk.CTkLabel(self.data_frame, text="", text_font=("Arial", 12))
         self.symbol.place(x=175, y=10, width=195, height=25)
