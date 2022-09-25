@@ -5,9 +5,9 @@
 ### Features
 
 Learn things about the Periodic Table.
-
+![Home page image](screenshots/home.png)
 Test your newly-acquired knowledge with quizes.
-
+![Screenshots page image](screenshots/at_no.png)
 
 
 
