@@ -12,9 +12,8 @@ Test your newly-acquired knowledge with quizes.
 
 ### Contributors 
 
-* Natya Vidhan Biswas (AKA studiousgamer)
-* Shirsak Majumder (AKA mash AKA failure)
-* Aargh Rai (AKA FloatingComet62)
-
+* [Natya Vidhan Biswas (AKA studiousgamer)](https://github.com/studiousgamer)
+* [Shirsak Majumder (AKA mash AKA failure)](https://github.com/dotmashrc)
+* [Aargh Rai (AKA FloatingComet62)](https://github.com/FloatingComet62)
 
 <sub><sup>*</sup>Terms and Conditions apply. We do not account for your idiocy.</sub>
