@@ -25,6 +25,10 @@ class App:
         self.atom_practice_btn.place(x=595, y=140, width=45, height=45)
         self.current_atom_element = random.randint(0, len(self.elemets) - 1)
 
+        self.mass_practice_btn = CTk.CTkButton(self.root, text="Quiz 2", command=self.open_mass_practice)
+        self.mass_practice_btn.place(x=595, y=190, width=45, height=45)
+        self.current_mass_element = random.randint(0, len(self.elemets) - 1)
+
         CTk.CTkLabel(self.learn_tab, text="Elements", text_font=("Arial", 18)).place(x=10, y=20, width=120, height=25)
 
         self.element_list = tk.Listbox(self.learn_tab, background="#525252", borderwidth=0, highlightthickness=0, font=("Arial", 10), foreground="#ffffff")
@@ -76,6 +80,19 @@ class App:
         self.current_atom_answer_submit_btn = CTk.CTkButton(self.atom_practice_tab, text="Submit", command=self.check_atom_answer)
         self.current_atom_answer_submit_btn.place(x=150, y=210, width=280, height=50)
 
+        self.mass_practice_tab = CTk.CTkFrame(self.root)
+        CTk.CTkLabel(self.mass_practice_tab, text="Guess Mass Number", text_font=("Arial", 28)).place(x=10, y=20, width=560, height=50)
+        self.current_mass_element_label = CTk.CTkLabel(self.mass_practice_tab, text=self.elemets[self.current_mass_element]["name"], text_font=("Arial", 28))
+        self.current_mass_element_label.place(x=150, y=95, width=280, height=50)
+
+        self.current_mass_answer_input = tk.Entry(self.mass_practice_tab, font=("Arial", 22), background="#525252", foreground="#ffffff", borderwidth=0, highlightthickness=0)
+        self.current_mass_answer_input.place(x=150, y=150, width=280, height=50)
+
+        self.current_mass_answer_input.bind("<Return>", self.check_mass_answer)
+
+        self.current_mass_answer_submit_btn = CTk.CTkButton(self.mass_practice_tab, text="Submit", command=self.check_mass_answer)
+        self.current_mass_answer_submit_btn.place(x=150, y=210, width=280, height=50)
+
         self.open_learn()
 
 
@@ -89,10 +106,20 @@ class App:
             self.current_atom_answer_input.delete(0, tk.END)
             showinfo("Incorrect", f"Incorrect!, Correct answer is {self.elemets[self.current_atom_element]['number']}")
 
+    def check_mass_answer(self, event=None):
+        mass = self.elemets[self.current_mass_element]['atomic_mass']
+        if int(self.elemets[self.current_mass_element]["atomic_mass"]) == int(self.current_mass_answer_input.get()):
+            self.current_mass_answer_input.delete(0, tk.END)
+            showinfo("Correct", f"Correct! ({mass})")
+            self.current_mass_element = random.randint(0, len(self.elemets) - 1)
+            self.current_mass_element_label.config(text=self.elemets[self.current_mass_element]["name"])
+        else:
+            self.current_mass_answer_input.delete(0, tk.END)
+            showinfo("Incorrect", f"Incorrect!, Correct answer is {int(mass)} ({mass})")
+
     def select_element(self, event, index=None):
         index = self.element_list.curselection()[0] if index is None else index
         element = self.elemets[index]
-        print(element["name"])
         self.element_name.config(text=element["name"])
         self.symbol.config(text=element["symbol"])
         self.elec_conf.config(text=element["electron_configuration_semantic"])
@@ -103,10 +130,17 @@ class App:
     def open_learn(self):
         self.learn_tab.place(x=0, y=0, width=575, height=350)
         self.atom_practice_tab.place_forget()
+        self.mass_practice_tab.place_forget()
 
     def open_atom_practice(self):
         self.learn_tab.place_forget()
         self.atom_practice_tab.place(x=0, y=0, width=575, height=350)
+        self.mass_practice_tab.place_forget()
+
+    def open_mass_practice(self):
+        self.learn_tab.place_forget()
+        self.atom_practice_tab.place_forget()
+        self.mass_practice_tab.place(x=0, y=0, width=575, height=350)
 
 
 if __name__ == "__main__":
