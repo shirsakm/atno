@@ -10,6 +10,12 @@ Test your newly-acquired knowledge with quizes.
 ![Atomic number quiz image](screenshots/at_no.png)
 ![Mass number quiz image](screenshots/mass_no.png)
 
+### How To Use
+The Three Buttons on the right are used to navigate through the three tabs
+- First one is Learning where you can learn about elements and stuff
+- Second one is where you can test your Atomic number knowledge
+- Third one is where you can test your Atomic mass knowledge 
+
 ### Contributors 
 
 * [Natya Vidhan Biswas (AKA studiousgamer)](https://github.com/studiousgamer)
