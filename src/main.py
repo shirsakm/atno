@@ -1,3 +1,4 @@
+from mimetypes import common_types
 import tkinter as tk
 import customtkinter as CTk
 import json
@@ -10,9 +11,20 @@ class App:
         self.root.resizable(False, False)
 
         self.elemets = json.load(open("data.json", "r", encoding="utf-8"))["elements"]
-
+        
+        self.sidebar = CTk.CTkFrame(self.root)
+        self.sidebar.place(x=575, y=0, width=75, height=350)
+        
         self.learn_tab = CTk.CTkFrame(self.root)
         self.learn_tab.place(x=0, y=0, width=575, height=350)
+        self.tab = "learn"
+
+        self.learn_btn = CTk.CTkButton(self.sidebar, text="Learn", command=lambda: self.learn_tab.place_forget())
+        self.quiz_btn = CTk.CTkButton(self.sidebar, text="Quiz")
+        self.learn_btn.place(y=100, width=75)
+        self.quiz_btn.place(y=200, width=75)
+        # self.quiz_tab = CTk.CTkFrame(self.root)
+
 
         CTk.CTkLabel(self.learn_tab, text="Elements", text_font=("Arial", 18)).place(x=10, y=20, width=120, height=25)
 
