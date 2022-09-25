@@ -12,14 +12,14 @@ class App:
         self.root.geometry("650x350")
         self.root.resizable(False, False)
 
-        self.elemets = json.load(open("data.json", "r", encoding="utf-8"))["elements"]
-        
+        self.load_ass()
+
         self.learn_tab = CTk.CTkFrame(self.root)
 
-        self.learn_btn = CTk.CTkButton(self.root, text="Learn", command=self.open_learn)
-        self.learn_btn.place(x=595, y=90, width=45, height=45)
+        self.learn_btn = CTk.CTkButton(self.root, image=self.learn_icon, command=self.open_learn)
+        self.learn_btn.place(x=595, y=90, width=100, height=100)
 
-        self.atom_practice_btn = CTk.CTkButton(self.root, text="Quiz 1", command=self.open_atom_practice)
+        self.atom_practice_btn = CTk.CTkButton(self.root, image=self.at_no_icon, command=self.open_atom_practice)
         self.atom_practice_btn.place(x=595, y=140, width=45, height=45)
 
         CTk.CTkLabel(self.learn_tab, text="Elements", text_font=("Arial", 18)).place(x=10, y=20, width=120, height=25)
@@ -84,6 +84,11 @@ class App:
         self.learn_tab.place_forget()
         self.atom_practice_tab.place(x=0, y=0, width=575, height=350)
 
+    def load_ass(self):
+        self.at_no_icon = tk.PhotoImage(file="assets/AN.png")
+        self.learn_icon = tk.PhotoImage(file="assets/L.png").subsample(3, 3)
+        self.mass_no_icon = tk.PhotoImage(file="assets/MN.png")
+        self.elemets = json.load(open("data.json", "r", encoding="utf-8"))["elements"]
 
 if __name__ == "__main__":
     root = CTk.CTk()
