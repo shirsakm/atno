@@ -9,7 +9,6 @@ class App:
         self.root.resizable(False, False)
 
 
-
 if __name__ == "__main__":
     root = CTk.CTk()
     app = App(root)
