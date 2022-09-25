@@ -14,19 +14,13 @@ class App:
 
         self.elemets = json.load(open("data.json", "r", encoding="utf-8"))["elements"]
         
-        self.sidebar = CTk.CTkFrame(self.root)
-        self.sidebar.place(x=575, y=0, width=75, height=350)
-        
         self.learn_tab = CTk.CTkFrame(self.root)
-        self.learn_tab.place(x=0, y=0, width=575, height=350)
-        self.tab = "learn"
 
-        self.learn_btn = CTk.CTkButton(self.sidebar, text="Learn", command=lambda: self.learn_tab.place_forget())
-        self.quiz_btn = CTk.CTkButton(self.sidebar, text="Quiz")
-        self.learn_btn.place(y=100, width=75)
-        self.quiz_btn.place(y=200, width=75)
-        # self.quiz_tab = CTk.CTkFrame(self.root)
+        self.learn_btn = CTk.CTkButton(self.root, text="Learn", command=self.open_learn)
+        self.learn_btn.place(x=595, y=90, width=45, height=45)
 
+        self.atom_practice_btn = CTk.CTkButton(self.root, text="Quiz 1", command=self.open_atom_practice)
+        self.atom_practice_btn.place(x=595, y=140, width=45, height=45)
 
         CTk.CTkLabel(self.learn_tab, text="Elements", text_font=("Arial", 18)).place(x=10, y=20, width=120, height=25)
 
@@ -66,6 +60,9 @@ class App:
 
         self.select_element(None, 0)
 
+        self.atom_practice_tab = CTk.CTkFrame(self.root)
+
+        self.open_learn()
 
 
     def select_element(self, event, index=None):
@@ -78,6 +75,15 @@ class App:
         self.at_no.config(text=str(element["number"]))
         self.ma_no.config(text=str(element["atomic_mass"]))
         self.pg_no.config(text=f"{element['xpos']}, {element['ypos']}")
+
+    def open_learn(self):
+        self.learn_tab.place(x=0, y=0, width=575, height=350)
+        self.atom_practice_tab.place_forget()
+
+    def open_atom_practice(self):
+        self.learn_tab.place_forget()
+        self.atom_practice_tab.place(x=0, y=0, width=575, height=350)
+
 
 if __name__ == "__main__":
     root = CTk.CTk()
