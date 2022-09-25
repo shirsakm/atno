@@ -150,6 +150,11 @@ class App:
         self.atom_practice_tab.place_forget()
         self.mass_practice_tab.place(x=0, y=0, width=575, height=350)
 
+    def load_ass(self):
+        self.at_no_icon = tk.PhotoImage(file="assets/AN.png")
+        self.learn_icon = tk.PhotoImage(file="assets/L.png").subsample(3, 3)
+        self.mass_no_icon = tk.PhotoImage(file="assets/MN.png")
+        self.elements = json.load(open("data.json", "r", encoding="utf-8"))["elements"]
 
 if __name__ == "__main__":
     root = CTk.CTk()
