@@ -18,14 +18,22 @@ class App:
         
         self.learn_tab = CTk.CTkFrame(self.root)
 
-        self.learn_btn = CTk.CTkButton(self.root, text="Learn", command=self.open_learn)
+        L = tk.PhotoImage(file="assets/L.png")
+        AN = tk.PhotoImage(file="assets/AN.png")
+        MN = tk.PhotoImage(file="assets/MN.png")
+
+        self.root.L = L
+        self.root.AN = AN
+        self.root.MN = MN
+
+        self.learn_btn = tk.Button(self.root, text="Learn", command=self.open_learn, image=L, borderwidth=0, highlightthickness=0)
         self.learn_btn.place(x=595, y=90, width=45, height=45)
 
-        self.atom_practice_btn = CTk.CTkButton(self.root, text="Quiz 1", command=self.open_atom_practice)
+        self.atom_practice_btn = tk.Button(self.root, text="Quiz 1", command=self.open_atom_practice, image=AN, borderwidth=0, highlightthickness=0)
         self.atom_practice_btn.place(x=595, y=140, width=45, height=45)
         self.current_atom_element = random.randint(0, len(self.elements) - 1)
 
-        self.mass_practice_btn = CTk.CTkButton(self.root, text="Quiz 2", command=self.open_mass_practice)
+        self.mass_practice_btn = tk.Button(self.root, text="Quiz 2", command=self.open_mass_practice, image=MN, borderwidth=0, highlightthickness=0)
         self.mass_practice_btn.place(x=595, y=190, width=45, height=45)
         self.current_mass_element = random.randint(0, len(self.elements) - 1)
 
