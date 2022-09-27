@@ -14,13 +14,13 @@ class App:
         self.root.geometry("650x350")
         self.root.resizable(False, False)
 
-        self.elements = json.load(open("data.json", "r", encoding="utf-8"))["elements"]
-        
+        self.elements = json.load(open("./src/data.json", "r", encoding="utf-8"))["elements"]
+
         self.learn_tab = CTk.CTkFrame(self.root)
 
-        L = tk.PhotoImage(file="assets/L.png")
-        AN = tk.PhotoImage(file="assets/AN.png")
-        MN = tk.PhotoImage(file="assets/MN.png")
+        L = tk.PhotoImage(file="./src/assets/L.png")
+        AN = tk.PhotoImage(file="./src/assets/AN.png")
+        MN = tk.PhotoImage(file="./src/assets/MN.png")
 
         self.root.L = L
         self.root.AN = AN
